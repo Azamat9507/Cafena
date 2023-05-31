@@ -9,7 +9,7 @@
                 <a class="nav-link active" href="/resto">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/resto/products/menu">MyResto</a>
+                    <a class="nav-link" href="/resto/products/menu">MyShop</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/resto/logout">Logout</a>
@@ -20,17 +20,17 @@
             <div class="restaurant_container">
                 <div class="dishs_table">
                     <span class="new_dish_txt">
-                        <%= member.mb_nick.toUpperCase() %> Taomlar Menyusi
+                        <%= member.mb_nick.toUpperCase() %> Product Menu
                     </span>
                     <table class="table table-bordered table-hover">
                         <thead class="thead-light">
                             <th scope="col">T/r</th>
-                            <th scope="col">Taom nomi</th>
-                            <th scope="col">Taom turi</th>
-                            <th scope="col">Taom Hajmi</th>
-                            <th scope="col">Taom Narhi</th>
-                            <th scope="col">Taom qoldiq miqdori</th>
-                            <th scope="col">Taom Holati</th>
+                            <th scope="col">Product name</th>
+                            <th scope="col">Product collection</th>
+                            <th scope="col">Product size</th>
+                            <th scope="col">Product price</th>
+                            <th scope="col">Product remained quantity</th>
+                            <th scope="col">Product status</th>
                         </thead>
                         <% restaurant_data.map((value, key) => { %>
                             <tbody style="background: white">
@@ -56,43 +56,43 @@
 
                     <!-- BUTTON TAOM QOSHISH -->
                     <div class="long_input" style="align-items: flex-end; margin-bottom: 25px;">
-                        <button class="btn btn-primary hidding_btn">Taom Qo'shish</button>
+                        <button class="btn btn-primary hidding_btn">Add Product</button>
                     </div>
 
                 </div>
                 <form onsubmit="return validateForm()" action="/resto/products/create" method="POST"
                     class="dish_container" enctype="multipart/form-data">
                     <div class="long_input" style= "display: flex; align-items: center;">
-                        <span class="new_dish_txt">Yangi Taom</span>
+                        <span class="new_dish_txt">New Product</span>
                     </div>
 
                     <div>
                         <div class="long_input">
-                            <label>Taom nomi</label>
-                            <input type="text" placeholder="Taom nomi" name="product_name" class="product_name">
+                            <label>Product name</label>
+                            <input type="text" placeholder="Product name" name="product_name" class="product_name">
                         </div>
                         <input name="product_status" value="PAUSED" class="product_status" hidden>
                     </div>
 
                     <div class="half_input_frame">
                         <div class="half_input">
-                            <label>Taom narhi</label>
-                            <input type="number" placeholder="Taom Narhi" name="product_price" class="product_price">
+                            <label>Product price</label>
+                            <input type="number" placeholder="Product price" name="product_price" class="product_price">
                         </div>
                         <div class="half_input">
-                            <label>Taom Qoldiq Miqdori</label>
-                            <input type="number" placeholder="Taom Qoldiq Miqdori" name="product_left_cnt" class="product_left_cnt">
+                            <label>Product remained quantity</label>
+                            <input type="number" placeholder="Product quantity available" name="product_left_cnt" class="product_left_cnt">
                         </div>
                     </div>
                     <div class="half_input_frame">
                         <div class="half_input">
-                            <label>Taom Turi</label>
+                            <label>Product collection</label>
                             <select class="product_collection" name="product_collection">
-                                <option value="dish" selected>Taom</option>
+                                <option value="dish" selected>Food</option>
                                 <option value="salad">Salad</option>
                                 <option value="dessert">Dessert</option>
                                 <option value="drink">Drink</option>
-                                <      option value="etc">Boshqa</option>
+                                <option value="etc">Boshqa</option>
                             </select>
                         </div>
 

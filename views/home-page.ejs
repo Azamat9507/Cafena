@@ -6,40 +6,113 @@
     <div class="group_name">
     <ul class="nav justify-content-center">
         <li class="nav-item">
-          <a class="nav-link active" href="/resto">Home</a>
+          <a class="nav-link active" href="/resto"><img src="/images/arrow-r.svg" alt=""> Home</a>
+        
         </li>
 
         <% if(!member) { %>
             <li class="nav-item">
-                <a class="nav-link" href="/resto/sign-up">Signup</a>
+                <a class="nav-link" href="/resto/sign-up"><img src="/images/arrow-r.svg" alt=""> Signup</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/resto/login">Login</a>
+                <a class="nav-link" href="/resto/login"><img src="/images/arrow-r.svg" alt=""> Login</a>
             </li>
         <% } else if (member.mb_type === 'ADMIN') { %>
             <li class="nav-item" style="cursor: pointer">
-                <a class="nav-link" href="/resto/all-restaurant">AllResto</a>
+                <a class="nav-link" href="/resto/all-restaurant"><img src="/images/arrow-r.svg" alt=""> AllResto</a>
             </li>
             <li class="nav-item" style="cursor: pointer"
                  onclick="return confirm('Do you want to logout?')">
-                <a class="nav-link" href="/resto/logout">Logout</a>
+                <a class="nav-link" href="/resto/logout"><img src="/images/arrow-r.svg" alt=""> Logout</a>
             </li>
         <% } else { %>
             <li class="nav-item" style="cursor: pointer">
-                <a class="nav-link" href="/resto/products/menu">MyResto</a>
+                <a class="nav-link" href="/resto/products/menu"><img src="/images/arrow-r.svg" alt="">MyResto</a>
             </li>
             <li class="nav-item" style="cursor: pointer"
                  onclick="return confirm('Do you want to logout?')">
-                <a class="nav-link" href="/resto/logout">Logout</a>
+                <a class="nav-link" href="/resto/logout"><img src="/images/arrow-r.svg" alt="">Logout</a>
             </li>
         <% } %>
 
       </ul>
     </div>
 
-    
+    <!-- <div class="home_wallpaper">
+        <span class="text_for_cup">ALL <br> BLACK <br>CAFENA</span>
+        <img src="/images/cup-dark.png">
+        <span class="banner_text_right"><span>W</span>elcome to <br> our Cafena</span>
+        <span class="cup_dom"></span>
+    </div> -->
 
-    <div class="animation-wrapper">
+    <header>
+        <nav>
+            <a href="#" class="brand">
+                <span>CAF</span>
+                ENA
+            </a>
+            <div class="toggle">
+                <i class="far fa-moon"></i>
+            </div>
+        </nav>
+        <div class="header-body">
+            <div>
+                <h1>
+                    <span class="toggle-text">
+                        Welcome to
+                    </span> <br />
+                    Cafena
+                </h1>
+            </div>
+            <div class="main-img">
+                <img src="/images/cup-dark.png" alt="Cafena">
+            </div>
+            <div class="text">
+                <div class="text-left"></div>
+                    <div>
+                        <h3><span class="toggle-text">
+                            Cafena</span> Lyfestyle Lovers.
+                        </h3>
+                        <p>
+                            Experience what it feels like
+                            drink your favourite beverage
+                            out of our premium mug that was
+                            design with you in mind 
+                        </p>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="text-right">
+                        <div>
+                            <h3>The design</h3>
+                            <p>
+                                Learn more what makes our
+                                coffeshop Cafena uniqui and 
+                                differnt. Let's watch 
+                                the video!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="play-btn">
+                        <div></div>
+                    </div> 
+                </div>
+            </div>
+            <div class="links">
+                <a href="#" class="main-link">
+                    <span>Explore Now</span>
+                </a>
+            </div>
+        </div> 
+        <h1 class="background-text">
+            <span class="toggle-text">
+                Welcome to
+            </span> <br />
+                Cafena
+        </h1> 
+    </header>     
+
+    <!-- <div class="animation-wrapper">
         <div class="sphere-animation">
         <svg class="sphere" viewBox="0 0 440 440" stroke="rgba(80,80,80,.35)">
             <defs>
@@ -72,7 +145,7 @@
             <path d="M109.698 109.332c-24.408 24.407-51.12 37.268-59.663 28.726-8.542-8.543 4.319-35.255 28.727-59.662 24.407-24.408 51.12-37.27 59.662-28.727 8.543 8.543-4.319 35.255-28.726 59.663z"/>
         </svg>
         </div>
-    </div>
+    </div> -->
     
     <script>
         function fitElementToParent(el, padding) {

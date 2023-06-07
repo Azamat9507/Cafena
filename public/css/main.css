@@ -18,8 +18,28 @@ a {
 
 }
 
+.nav-item {
+    background: #282c33;
+    width: 200px;
+    margin: 10px 0;
+    border-radius: 25px;
+    overflow: hidden;
+    
+}
+
 .nav-item a {
-    color: #e3c08d;
+    color: #fff;
+    transition: ease 0.2s;
+   transform: translateX(-50px);
+}
+
+.nav-item a img {
+    width: 30px;
+}
+
+.nav-item:hover a {
+    color: #fa5f05;
+    transform: translateX(0px);
 }
 
 .nav-item a .disabled {
@@ -45,3 +65,5 @@ a {
     color: #FFFFFF;
     margin-bottom: 30px;
 }
+
+

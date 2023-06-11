@@ -24,17 +24,39 @@ a {
     margin: 10px 0;
     border-radius: 25px;
     overflow: hidden;
+    margin-left: 20px;
+
+    
+}
+
+.nav-item.nav-right a {
+    transform: translateX(50px);
+}
+
+
+.nav-item.nav-right:hover a {
+    cursor: pointer #fa5f05;
+    transform: translateX(50px);
     
 }
 
 .nav-item a {
     color: #fff;
+    width: 200px;
     transition: ease 0.2s;
    transform: translateX(-50px);
+   
 }
+
 
 .nav-item a img {
     width: 30px;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.nav-item a:nth-child(2) img {
+    margin-left: 20px;
 }
 
 .nav-item:hover a {
@@ -52,7 +74,7 @@ a {
     z-index: 10000;
     top: 1%;
     color: #efefee;
-    font-size: xxx-large;
+    font-size: xx-large;
     font-family: monospace;
 }
 

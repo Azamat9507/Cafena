@@ -5,13 +5,13 @@
 
         <div class="group_name">
             <ul class="nav justify-content-center">
-                <li class="nav-item">
+                <li class="nav-item nav-right">
                 <a class="nav-link active" href="/resto">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item nav-right">
                     <a class="nav-link" href="/resto/products/menu">MyShop</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item nav-right">
                     <a class="nav-link" href="/resto/logout">Logout</a>
                 </li>
             </ul> 
@@ -92,62 +92,62 @@
                                 <option value="salad">Salad</option>
                                 <option value="dessert">Dessert</option>
                                 <option value="drink">Drink</option>
-                                <option value="etc">Boshqa</option>
+                                <option value="etc">Others</option>
                             </select>
                         </div>
 
                         <div class="half_input" id="product_size">
-                            <label>Taom Hajmi</label>
+                            <label>Product size</label>
                             <select class="product_size" name="product_size">
-                                <option value="small">Kichik</option>
-                                <option value="normal" selected>O'rtacha</option>
-                                <option value="large">Katta</option>
+                                <option value="small">Small</option>
+                                <option value="normal" selected>Regular</option>
+                                <option value="large">Big</option>
                                 <option value="set">Set</option>
                             </select>
                         </div>
 
                         <div class="half_input" id="product_volume" style="display: none;">
-                            <label>Ichimlik Hajmi</label>
+                            <label>Drink size</label>
                             <select class="product_volume" name="product_volume">
-                                <option value="0.5">0.5 L</option>
-                                <option value="1">1 L</option>
-                                <option value="1.2">1.2 L</option>
-                                <option value="1.5">1.5 L</option>
-                                <option value="set">2 L</option>
+                                <option value="0.5">Short - 237ml</option>
+                                <option value="1">Tall - 355ml</option>
+                                <option value="1.2">Grande - 473ml</option>
+                                <option value="1.5">Venti - 591ml</option>
+                                <option value="set">Set</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="long_input">
-                        <label>Taom Haqida</label>
+                        <label>Product Description</label>
                         <textarea name="product_description" class="product_description"></textarea>
                     </div>
 
                     <div class="img_frame">
-                        <label>Taom Rasmlari</label>
+                        <label>Product image</label>
                         <div class="media-frame">
                             <div class="upload_img_box">
-                                <img src="/images/upload.svg" class="1" id="image_section_1">
+                                <img src="/images/upload_image.svg" class="1" id="image_section_1">
                                 <input type="file" id="file" name="product_images" class="image_one"
                                 onchange="previewFiledHandler(this, 1)">
                             </div>
                             <div class="upload_img_box">
-                                <img src="/images/upload.svg" class="2" id="image_section_2">
+                                <img src="/images/upload_image.svg" class="2" id="image_section_2">
                                 <input type="file" id="file" name="product_images" class="image_two"
                                 onchange="previewFiledHandler(this, 2)">
                             </div>
                             <div class="upload_img_box">
-                                <img src="/images/upload.svg" class="3" id="image_section_3">
+                                <img src="/images/upload_image.svg" class="3" id="image_section_3">
                                 <input type="file" id="file" name="product_images" class="image_three"
                                 onchange="previewFiledHandler(this, 3)">
                             </div>
                             <div class="upload_img_box">
-                                <img src="/images/upload.svg" class="4" id="image_section_4">
+                                <img src="/images/upload_image.svg" class="4" id="image_section_4">
                                 <input type="file" id="file" name="product_images" class="image_four"
                                 onchange="previewFiledHandler(this, 4)">
                             </div>
                             <div class="upload_img_box">
-                                <img src="/images/upload.svg" class="5" id="image_section_5">
+                                <img src="/images/upload_image.svg" class="5" id="image_section_5">
                                 <input type="file" id="file" name="product_images" class="image_five"
                                 onchange="previewFiledHandler(this, 5)">
                             </div>
@@ -157,7 +157,7 @@
 
                     <!-- BUTTON Chop Etish -->
                     <div class="long_input" style="align-items: flex-end; margin-bottom: 25px;">
-                        <button type="submit" class="btn btn-primary" id="create_product">Chop Etish</button>
+                        <button type="submit" class="btn btn-primary" id="create_product">Print</button>
 
                     </div>
                 </form>

@@ -15,11 +15,11 @@
                 <a class="nav-link" href="/resto/sign-up"><img src="/images/arrow-r.svg" alt=""> Signup</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/resto/login"><img src="/images/arrow-r.svg" alt=""> Login</a>
+                <a class="nav-link" href="/resto/login"><img src="/images/arrow-r.svg"  alt=""> Login</a>
             </li>
         <% } else if (member.mb_type === 'ADMIN') { %>
             <li class="nav-item" style="cursor: pointer">
-                <a class="nav-link" href="/resto/all-restaurant"><img src="/images/arrow-r.svg" alt=""> AllResto</a>
+                <a class="nav-link" href="/resto/all-restaurant"><img src="/images/arrow-r.svg"  alt=""> AllResto</a>
             </li>
             <li class="nav-item" style="cursor: pointer"
                  onclick="return confirm('Do you want to logout?')">
@@ -27,23 +27,16 @@
             </li>
         <% } else { %>
             <li class="nav-item" style="cursor: pointer">
-                <a class="nav-link" href="/resto/products/menu"><img src="/images/arrow-r.svg" alt="">MyResto</a>
+                <a class="nav-link" href="/resto/products/menu"><img src="/images/arrow-r.svg" style=" margin-right: 12px;" alt="">MyShop</a>
             </li>
             <li class="nav-item" style="cursor: pointer"
                  onclick="return confirm('Do you want to logout?')">
-                <a class="nav-link" href="/resto/logout"><img src="/images/arrow-r.svg" alt="">Logout</a>
+                <a class="nav-link" href="/resto/logout"><img src="/images/arrow-r.svg" style=" margin-right: 12px;" alt="">Logout</a>
             </li>
         <% } %>
 
       </ul>
     </div>
-
-    <!-- <div class="home_wallpaper">
-        <span class="text_for_cup">ALL <br> BLACK <br>CAFENA</span>
-        <img src="/images/cup-dark.png">
-        <span class="banner_text_right"><span>W</span>elcome to <br> our Cafena</span>
-        <span class="cup_dom"></span>
-    </div> -->
 
     <header>
         <nav>

@@ -2,7 +2,7 @@ const assert = require("assert");
 const Definer = require("../lib/mistake");
 const MemberModel = require("../schema/member.model.js");
 const { shapeIntoMongooseObjectId, lookup_auth_member_liked } = require("../lib/config");
-const Member = require("../models/Members")
+const Member = require("./Members")
 
 
 class Restaurant {

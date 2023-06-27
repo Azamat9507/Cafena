@@ -17,30 +17,6 @@ body {
     background-repeat: no-repeat;
 }
 
-/* @-webkit-keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 50% 100%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-} */
-
 .login_container .login_frame {
     position: relative;
     width: 420px;

@@ -8,6 +8,8 @@ const followController = require("./controllers/followController");
 const communityController = require("./controllers/communityController");
 const uploader_community = require("./utils/upload-multer")("community");
 const uploader_member = require("./utils/upload-multer")("members");
+const commentController = require("./controllers/commentController");
+
 
 /****************************
  *       REST API        *
@@ -125,5 +127,9 @@ router.get(
   memberController.retrieveAuthMember, 
   followController.getMemberFollowers 
 );
+
+router.post("/comments", commentController.retrieveComment);
+
+router.get("/comments", commentController.getComments);
 
 module.exports = router; 

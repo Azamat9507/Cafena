@@ -132,4 +132,6 @@ router.post("/comments", commentController.retrieveComment);
 
 router.get("/comments", commentController.getComments);
 
+// router.delete("/comments/:productId", commentController.delete);
+
 module.exports = router; 

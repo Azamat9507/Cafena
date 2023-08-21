@@ -39,3 +39,21 @@ exports.getComments = async (req, res) => {
   }
 };
 
+// Delete a comment by name and comment
+// exports.delete = async (req, res) => {
+//   try {
+//     const productId = req.params.productId;
+
+//     const deletedComments = await Comment.deleteOne({ product: productId });
+
+//     if (deletedComments.deletedCount > 0) {
+//       res.json({ message: 'Comments deleted successfully' });
+//     } else {
+//       res.status(404).json({ error: 'No comments found for the product' });
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Failed to delete comments' });
+//   }
+// };
+

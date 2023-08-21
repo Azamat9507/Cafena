@@ -1,7 +1,7 @@
 {
-  "name": "papay",
+  "name": "cafena",
   "version": "1.0.0",
-  "description": "bu bizning dostavka loyihamiz",
+  "description": "It's our coffee franchases project",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

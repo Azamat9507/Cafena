@@ -1,0 +1,25 @@
+version: "3.3"
+
+services:
+  node:
+    container_name: cafena_backend
+    restart: always
+    image: node:16.10.0
+    ports:
+      - 3006:3006
+    volumes:
+      - ./:/usr/src/app
+    working_dir: /usr/src/app
+
+    #PRODUCTION
+    networks:
+      - cafena_network
+
+    command: bash -c "npm install && npm run start:prod"
+
+    #DEVELOPMENT
+    #command: bash -c "npm install && npm run dev"
+
+networks:
+  cafena_network:
+    driver: bridge

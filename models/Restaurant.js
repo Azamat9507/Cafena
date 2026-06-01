@@ -87,11 +87,31 @@ class Restaurant {
     }
   }
 
+  async getAllUsersData() {
+    try {
+      const result = await this.memberModel
+        .find({
+          mb_type: "USER",
+        })
+        .exec();
+
+      assert(result, Definer.general_err1);
+      return result;
+    } catch (err) {
+      throw err;
+    }
+  }
+
   async updateRestaurantByAdminData(update_data) {
     try {
       const id = shapeIntoMongooseObjectId(update_data?.id);
+      const allowed_update = {};
+
+      if (update_data.mb_top) allowed_update.mb_top = update_data.mb_top;
+      if (update_data.mb_status) allowed_update.mb_status = update_data.mb_status;
+
       const result = await this.memberModel
-      .findByIdAndUpdate({ _id: id }, update_data, { 
+      .findByIdAndUpdate({ _id: id }, allowed_update, { 
         runValidators: true,
         lean: true,
         returnDocument: "after",

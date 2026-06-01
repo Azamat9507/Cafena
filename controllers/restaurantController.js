@@ -174,8 +174,12 @@ restaurantController.getAllRestaurants = async (req, res) => {
 
     const restaurant = new Restaurant();
     const restaurants_data = await restaurant.getAllRestaurantsData();
+    const users_data = await restaurant.getAllUsersData();
     console.log("restaurants_data:", restaurants_data);
-    res.render("all-restaurants", { restaurants_data: restaurants_data });
+    res.render("all-restaurants", {
+      restaurants_data: restaurants_data,
+      users_data: users_data,
+    });
   } catch (err) {
     console.log(`ERROR, cont/getAllRestaurants, ${err.message}`);
     res.json({ state: "fail", message: err.message});

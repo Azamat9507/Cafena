@@ -41,10 +41,11 @@ class Member {
       const member = await this.memberModel
         .findOne(
             {mb_nick: input.mb_nick},
-            {mb_nick: 1, mb_password: 1})
+            {mb_nick: 1, mb_password: 1, mb_status: 1})
         .exec();
 
       assert.ok(member, Definer.auth_err3);
+      assert.strictEqual(member.mb_status, "ACTIVE", Definer.auth_err6);
 
 
       const isMatch = await bcrypt.compare(

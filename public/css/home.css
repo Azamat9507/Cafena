@@ -243,8 +243,33 @@ nav {
   z-index: 2;
 }
 
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  color: var(--text-primary);
+  font-size: 1.35em;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-decoration: none;
+}
+
 .brand span {
   color: var(--accent);
+}
+
+.brand:hover,
+.brand:focus {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.brand:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+  border-radius: 4px;
+  box-shadow: none;
 }
 
 .toggle {
@@ -285,6 +310,8 @@ nav {
   display: flex;
   justify-content: center;
   cursor: pointer;
+  padding: 0;
+  background: transparent;
   transition: 0.3s;
 }
 
@@ -295,10 +322,90 @@ nav {
 .play-btn div {
   width: 0;
   height: 0;
-  top: 2px;
+  margin-left: 3px;
   border-top: 6px solid transparent;
   border-left: 12px solid var(--accent);
   border-bottom: 6px solid transparent;
+}
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.video-modal.is-open {
+  display: flex;
+}
+
+.video-modal_backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.video-modal_panel {
+  position: relative;
+  z-index: 1;
+  width: min(920px, 100%);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #11151b;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.45);
+}
+
+.coffee-video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  background: #11151b;
+}
+
+.video-modal_close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #202329;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.video-fallback {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 24px;
+  text-align: center;
+  background: rgba(17, 21, 27, 0.92);
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.video-fallback.is-visible {
+  display: flex;
+}
+
+.video-fallback a {
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .links a {

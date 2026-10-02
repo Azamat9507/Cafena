@@ -9,6 +9,7 @@ const communityController = require("./controllers/communityController");
 const uploader_community = require("./utils/upload-multer")("community");
 const uploader_member = require("./utils/upload-multer")("members");
 const commentController = require("./controllers/commentController");
+const assistantController = require("./controllers/assistantController");
 
 
 /****************************
@@ -133,5 +134,7 @@ router.post("/comments", commentController.retrieveComment);
 router.get("/comments", commentController.getComments);
 
 // router.delete("/comments/:productId", commentController.delete);
+
+router.post("/assistant", assistantController.ask);
 
 module.exports = router; 

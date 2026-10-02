@@ -13,7 +13,7 @@ productController.getAllProducts = async (req, res) => {
     res.json({ state: "success", data: result });
   } catch (err) {
     console.log(`ERROR, cont/getAllProducts, ${err.message}`);
-    res.json({ state: "failed", message: err.message });
+    res.json({ state: "fail", message: err.message });
   }
 };
 
@@ -23,10 +23,10 @@ productController.getChosenProduct = async (req, res) => {
     const product = new Product(), 
       id = req.params.id,
       result = await product.getChosenProductData(req.member, id);
-    res.json({ state: "success!", data: result });
+    res.json({ state: "success", data: result });
   } catch(err) {
     console.log(`ERROR, cont/getChosenProduct, ${err.message}`);
-    res.json({ state: "failed", message: err.message });
+    res.json({ state: "fail", message: err.message });
   }
 };
 

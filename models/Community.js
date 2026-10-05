@@ -57,6 +57,7 @@ class Community {
             },
           },
           { $unwind: "$member_data" },
+          { $unset: "member_data.mb_password" },
           lookup_auth_member_liked(auth_mb_id), //done check auth member liked the chosen target
         ])
         .exec();
@@ -97,6 +98,7 @@ class Community {
           },
         },
         { $unwind: "$member_data" },
+          { $unset: "member_data.mb_password" },
         lookup_auth_member_liked(auth_mb_id),//done check auth member liked the chosen target
 
       ])

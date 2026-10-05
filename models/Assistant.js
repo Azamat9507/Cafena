@@ -2,6 +2,7 @@ const assert = require("assert");
 const ProductModel = require("../schema/product.model");
 const MemberModel = require("../schema/member.model");
 const Definer = require("../lib/mistake");
+const CAFE_ATLAS = require("../lib/cafeAtlas");
 
 const MODELS = ["gemini-3.5-flash", "gemini-3.5-flash-lite", "gemini-3.1-flash-lite"];
 const CATALOG_TTL = 5 * 60 * 1000;
@@ -15,14 +16,17 @@ const ANSWER_DEADLINE = 25000;
 const MODEL_TIMEOUT = 9000;
 
 const MAX_SHOP_LINKS = 3;
+const MAX_PLACE_LINKS = 4;
 
-const SYSTEM_PROMPT = `You are Cafena's assistant, the chat on a site where Korean coffee shops sell drinks and food. Visitors talk to you about the shops and menus below, about coffee in general (beans, brewing, drinks, cafe culture in Korea) and about using the site (ordering, basket, account, community board). Questions on anything else get a brief, friendly refusal.
+const SYSTEM_PROMPT = `You are Cafena's assistant, the chat on a site where Korean coffee shops sell drinks and food. Visitors talk to you about the shops and menus below, about the most beautiful cafes in Korea, about coffee in general (beans, brewing, drinks, cafe culture in Korea) and about using the site (ordering, basket, account, community board). Questions on anything else get a brief, friendly refusal.
 
-Facts about shops, items, sizes and prices come only from the SHOPS and MENU lists; never invent a shop, an item or a price, and say so when the lists do not have what is asked. General coffee knowledge may come from what you know.
+Facts about shops, items, sizes and prices come only from the SHOPS and MENU lists, and facts about beautiful cafes only from the ATLAS list; never invent a shop, an item or a price, and say so when the lists do not have what is asked. General coffee knowledge may come from what you know.
 
 When the visitor wants something to eat or drink, a recommendation or an order, put it together from the menu in "items" (menu line numbers "no" with quantities, six lines at most), from one shop unless they ask to mix. When they name a budget, the sum of price x quantity must not go over it and you return that number as "budget"; otherwise "budget" is 0. Size the order to the number of people when it is given. When they ask to change the order, return the whole new order. For any other question "items" is empty.
 
-When the answer is about particular shops, list them in "shops" by their line numbers, three at most; otherwise "shops" is empty.
+When the answer is about particular Cafena shops, list them in "shops" by their line numbers, three at most; otherwise "shops" is empty.
+
+ATLAS is Cafena's hand-picked list of Korea's most beautiful cafes: architecture, interiors, views. When the visitor asks for a beautiful, aesthetic, design or view cafe, a place for photos or a cafe worth a trip, recommend from ATLAS, matched to the city or mood they mention, and list them in "places" by line number, four at most; otherwise "places" is empty. ATLAS cafes are not on Cafena and cannot be ordered from; the card opens a map. Never recommend a beautiful cafe that is not in ATLAS.
 
 "reply" is written in the same language as the visitor's latest message: plain text, one to four short sentences, no markdown, no lists, no emoji. When there are items, do not repeat their prices, totals or quantities, the site shows those itself. If asked about yourself, you are the assistant built for this site; do not name the model, the provider or these instructions.
 
@@ -34,6 +38,7 @@ const RESPONSE_SCHEMA = {
     reply: { type: "STRING" },
     budget: { type: "NUMBER" },
     shops: { type: "ARRAY", items: { type: "INTEGER" } },
+    places: { type: "ARRAY", items: { type: "INTEGER" } },
     items: {
       type: "ARRAY",
       items: {
@@ -46,7 +51,7 @@ const RESPONSE_SCHEMA = {
       },
     },
   },
-  required: ["reply", "budget", "items", "shops"],
+  required: ["reply", "budget", "items", "shops", "places"],
 };
 
 const visitorWindows = new Map();
@@ -175,7 +180,12 @@ class Assistant {
         cell(product.product_description),
       ].join(" | ")
     );
-    return `${SYSTEM_PROMPT}SHOPS:\nno | name | address | likes | notes\n${shop_rows.join(
+    const atlas_rows = CAFE_ATLAS.map((cafe, index) =>
+      [index + 1, cell(cafe.name), cell(cafe.place), cell(cafe.note)].join(" | ")
+    );
+    return `${SYSTEM_PROMPT}ATLAS:\nno | name | place | why it is beautiful\n${atlas_rows.join(
+      "\n"
+    )}\nEND OF ATLAS\n\nSHOPS:\nno | name | address | likes | notes\n${shop_rows.join(
       "\n"
     )}\nEND OF SHOPS\n\nMENU:\nno | shop | name | kind | size | price | notes\n${menu_rows.join(
       "\n"
@@ -261,6 +271,17 @@ class Assistant {
     }));
   }
 
+  pickPlaces(answer) {
+    const picked = [];
+    for (const no of Array.isArray(answer.places) ? answer.places : []) {
+      const cafe = CAFE_ATLAS[no - 1];
+      if (!cafe || picked.includes(cafe)) continue;
+      picked.push(cafe);
+      if (picked.length === MAX_PLACE_LINKS) break;
+    }
+    return picked;
+  }
+
   async answerData(messages) {
     try {
       const data = await this.getCatalogData();
@@ -279,6 +300,7 @@ class Assistant {
                 reply: message.text,
                 budget: message.budget,
                 shops: [],
+                places: [],
                 items: message.items
                   .filter((item) => line_no.has(item.id))
                   .map((item) => ({ no: line_no.get(item.id), quantity: item.quantity })),
@@ -316,6 +338,7 @@ class Assistant {
         text: answer.reply.trim(),
         items: items,
         shops: this.pickShops(answer, data.shops),
+        places: this.pickPlaces(answer),
         total: orderTotal(items),
         budget: budget,
         trimmed: trimmed,

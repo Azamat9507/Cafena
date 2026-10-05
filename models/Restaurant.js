@@ -39,6 +39,8 @@ class Restaurant {
       aggregationQuery.push({ $skip: (data.page -1) * data.limit });
       aggregationQuery.push({ $limit: data.limit });
       aggregationQuery.push(lookup_auth_member_liked(auth_mb_id)); //done check auth member liked the chosen target
+      // select: false in the schema does not reach aggregate, so the hash is dropped here
+      aggregationQuery.push({ $unset: "mb_password" });
 
       const result = await this.memberModel.aggregate(aggregationQuery).exec();
       assert.ok(result, Definer.general_err1);

@@ -26,7 +26,12 @@ class Member {
           result = await new_member.save();
           } catch(mongo_err) {
               console.log(mongo_err);
-              throw new Error(Definer.mongo_validation_err1); 
+              if (mongo_err.code === 11000) {
+                  throw new Error(
+                      mongo_err.keyPattern?.mb_phone ? Definer.auth_err8 : Definer.auth_err7
+                  );
+              }
+              throw new Error(Definer.mongo_validation_err1);
           }
           
           result.mb_password = "";

@@ -118,6 +118,7 @@ class Follow {
               }, 
             },
             { $unwind: "$follow_member_data" },
+            { $unset: "follow_member_data.mb_password" },
             //folow id faqat 1 memberga tegishli bogani u/n 
             // array bolishi shart emas biz buni object qilib oldik
           ])
@@ -150,6 +151,7 @@ class Follow {
           },
         },
         { $unwind: "$subscriber_member_data" },
+        { $unset: "subscriber_member_data.mb_password" },
       ];
 
       // following followed back to subscriber

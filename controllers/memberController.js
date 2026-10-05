@@ -99,7 +99,7 @@ memberController.getChosenMember = async (req, res) => {
 
   } catch (err) {
       console.log(`ERROR cont/getChosenMember, ${err.message}`);
-      res.json({ state: "Failed", message: err.message });
+      res.json({ state: "fail", message: err.message });
   }
 };
 
@@ -122,7 +122,7 @@ memberController.likeMemberChosen = async (req, res) => {
     res.json({ state: "success", data: result });
   } catch (err) {
       console.log(`ERROR cont/likeMemberChosen, ${err.message}`);
-      res.json({ state: "Failed", message: err.message });
+      res.json({ state: "fail", message: err.message });
   }
 };
 memberController.updateMember = async (req, res) => {
@@ -141,7 +141,7 @@ memberController.updateMember = async (req, res) => {
     res.json({ state: "success", data: result });
   } catch (err) {
       console.log(`ERROR cont/updateMember, ${err.message}`);
-      res.json({ state: "Failed", message: err.message });
+      res.json({ state: "fail", message: err.message });
   }
 };
 
